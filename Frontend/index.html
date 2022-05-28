@@ -1,0 +1,468 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Stroke Prediction</title>
+
+
+    <!-- Bootstrap core CSS -->
+    <link href="assets/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="assets/dist/css/index.css" rel="stylesheet">
+
+
+</head>
+
+<body>
+    <html-include src="header.html"></html-include>
+
+    <div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-indicators">
+            <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" class="active" aria-current="true"
+                aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+            <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+        </div>
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img style="background: url('assets/images/Wallpaper1.png');
+                background-repeat:no-repeat !important; background-size: cover !important; 
+                background-position: center;border-radius: unset;" class="bd-placeholder-img" width="100%"
+                    height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"
+                    preserveAspectRatio="xMidYMid slice" focusable="false">
+                <rect width="100%" height="100%" fill="#777" />
+                </svg>
+
+                <div class="container">
+                    <div class="carousel-caption hero-title text-start">
+                        <h1>Afraid to die without saying goodbye?</h1>
+                        <p>Stroke is one of the major silent killers in the world. So don't be late to take precautions.
+                        </p>
+                        <p><a class="btn btn-lg btn-primary" href="predict.html">Predict</a></p>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img style="background: url('assets/images/Wallpaper22.jpg');
+                background-repeat:no-repeat !important; background-size: cover !important; 
+                background-position: center;border-radius: unset;" class="bd-placeholder-img" width="100%"
+                    height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"
+                    preserveAspectRatio="xMidYMid slice" focusable="false">
+                <rect width="100%" height="100%" fill="#777" />
+                </svg>
+
+                <div class="container">
+                    <div class="carousel-caption hero-title text-start">
+                        <h1>Want to reduce the risk of stroke?</h1>
+                        <p>First step to reducing the risk is knowing the risk.</p>
+                        <p><a class="btn btn-lg btn-primary" href="predict.html">Predict</a></p>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-item ">
+                <img style="background: url('assets/images/Wallpaper33.jpg');
+                    background-repeat:no-repeat !important; background-size: cover !important; 
+                    background-position: center;border-radius: unset;" class="bd-placeholder-img" width="100%"
+                    height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"
+                    preserveAspectRatio="xMidYMid slice" focusable="false">
+                <rect width="100%" height="100%" fill="#777" />
+                </svg>
+
+                <div class="container">
+                    <div class="carousel-caption hero-title text-start">
+                        <h1>Scared to lose loving ones to stroke?</h1>
+                        <p>Annually 5 million people die and another 5 million are permanently disabled by stroke. Don't
+                            be late to take action.</var>
+                        </p>
+                        <p><a class="btn btn-lg btn-primary" href="predict.html">Predict</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+
+    <div class="b-example-divider" id="Details"></div>
+
+    <div class="container col-xxl-8 px-4 py-5">
+        <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
+            <div class="col-10 col-sm-8 col-lg-6">
+                <img src="assets/images/WHO.png" class="d-block mx-lg-auto img-fluid" alt="Bootstrap Themes" width="700"
+                    height="500" loading="lazy">
+            </div>
+            <div class="col-lg-6">
+                <h1 class="display-5 fw-bold lh-1 mb-3">Stroke</h1>
+                <p class="lead">Stroke carries a high risk of death. Survivors can experience loss of vision and/or
+                    speech, paralysis and confusion.
+                    Stroke is so called because of the way it strikes people down. The risk of further episodes is
+                    significantly increased for people having
+                    experienced a previous stroke.</p>
+                <p class="lead">Annually, 15 million people worldwide suffer a stroke. Of these, 5 million die and
+                    another 5 million are left permanently disabled,
+                    placing a burden on family and community.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="b-example-divider"></div>
+
+    <div class="container col-xxl-8 px-4 py-5">
+        <div class="row flex-lg-row align-items-center g-5 py-5">
+            <div class="col-10 col-sm-8 col-lg-6">
+                <img src="assets/images/Strok1.jpg" class="d-block mx-lg-auto img-fluid" alt="Bootstrap Themes"
+                    width="700" height="500" loading="lazy">
+            </div>
+            <div class="col-lg-6">
+                <h1 class="display-5 fw-bold lh-1 mb-3">What is a Stroke?</h1>
+                <p class="lead">A stroke, sometimes called a brain attack, occurs when something blocks blood supply to
+                    part of the brain or when a blood
+                    vessel in the brain bursts. In either case, parts of the brain become damaged or die. A stroke can
+                    cause lasting brain damage, long-term
+                    disability, or even death.</p>
+                <p class="lead">The brain controls our movements, stores our memories, and is the source of our
+                    thoughts, emotions, and language.To work properly,
+                    your brain needs oxygen. Although your brain makes up only 2% of your body weight, it uses 20% of
+                    the oxygen you breathe. Your arteries deliver
+                    oxygen-rich blood to all parts of your brain. If something happens to block the flow of blood, brain
+                    cells start to die within minutes because they
+                    can't get oxygen. This causes a stroke.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="b-example-divider"></div>
+
+    <div class="container col-xxl-8 px-4 py-5">
+        <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
+            <div class="col-10 col-sm-8 col-lg-6">
+                <img src="assets/images/stroke2.jpg" class="d-block mx-lg-auto img-fluid" alt="Bootstrap Themes"
+                    width="700" height="500" loading="lazy">
+            </div>
+            <div class="col-lg-6">
+                <h1 class="display-5 fw-bold lh-1 mb-3">Types of Strokes</h1>
+                <p class="lead">An <b>ischemic stroke</b> occurs when blood clots or other particles block the blood
+                    vessels to
+                    the brain. Fatty deposits called plaque can also cause blockages by building up in the blood
+                    vessels.</p>
+                <p class="lead">A <b>hemorrhagic stroke</b> occurs when a blood vessel bursts in the brain. Blood builds
+                    up and
+                    damages surrounding brain tissue.</p>
+                <p class="lead">A <b>transient ischemic attack (TIA)</b> is sometimes called a “mini-stroke.” It is
+                    different
+                    from the major types of stroke because blood flow to the brain is blocked for only a short
+                    time—usually no more than 5 minutes.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="b-example-divider"></div>
+
+    <div class="container col-xxl-8 px-4 py-5">
+        <div class="row flex-lg-row align-items-center g-5 py-5">
+            <div class="col-10 col-sm-8 col-lg-6">
+                <img src="assets/images/stroke33.png" class="d-block mx-lg-auto img-fluid" alt="Bootstrap Themes"
+                    width="700" height="500" loading="lazy">
+            </div>
+            <div class="col-lg-6">
+                <h1 class="display-5 fw-bold lh-1 mb-3">Signs of Strokes</h1>
+                <p class="lead">Sudden <b>numbness</b> or weakness in the face, arm, or leg, especially on one side of
+                    the
+                    body.</p>
+                <p class="lead">Sudden <b>confusion</b>, trouble speaking, or difficulty understanding speech.</p>
+                <p class="lead">Sudden <b>trouble seeing</b> in one or both eyes.</p>
+                <p class="lead">Sudden <b>trouble walking</b>, dizziness, loss of balance, or lack of coordination.</p>
+                <p class="lead">Sudden <b>severe headache</b> with no known cause.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="b-example-divider"></div>
+
+    <div class="container col-xxl-8 px-4 py-5">
+        <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
+            <div class="col-10 col-sm-8 col-lg-6">
+                <img src="assets/images/stroke44.jpg" class="d-block mx-lg-auto img-fluid" alt="Bootstrap Themes"
+                    width="700" height="500" loading="lazy">
+            </div>
+            <div class="col-lg-6">
+                <h1 class="display-5 fw-bold lh-1 mb-3">Stroke FAST test</h1>
+                <p class="lead"> If you think someone may be having a stroke, act F.A.S.T. and do the following simple
+                    test:</p>
+                <p class="lead"> <b>F—Face</b>: Ask the person to smile. Does one side of the face droop?</p>
+                <p class="lead"> <b>A—Arms</b>: Ask the person to raise both arms. Does one arm drift downward?</p>
+                <p class="lead"> <b>S—Speech</b>: Ask the person to repeat a simple phrase. Is the speech slurred or
+                    strange?</p>
+                <p class="lead"> <b>T—Time</b>: If you see any of these signs, call 9-1-1 right away.</p>
+                <p class="lead"> <b>Note the time when any symptoms first appear</b>. This information helps health care
+                    providers determine the best treatment for each person. Do not drive to the hospital or let someone
+                    else drive you. Call an ambulance so that medical personnel can begin life-saving treatment on the
+                    way to the emergency room.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="b-example-divider"></div>
+
+    <div class="container col-xxl-8 px-4 py-5">
+        <div class="row flex-lg-row align-items-center g-5 py-5">
+            <div class="col-10 col-sm-8 col-lg-6">
+                <img src="assets/images/stroke5.png" class="d-block mx-lg-auto img-fluid" alt="Bootstrap Themes"
+                    width="700" height="500" loading="lazy">
+            </div>
+            <div class="col-lg-6">
+                <h1 class="display-5 fw-bold lh-1 mb-3">Stroke Risk Factors</h1>
+                <p class="lead"><b>High blood pressure</b>, also called <b>hypertension</b>, is a major risk factor for
+                    stroke.</p>
+                <p class="lead"><b>Smoking</b> damages blood vessels, which can cause a stroke.</p>
+                <p class="lead"><b>Overweight and obesity</b>. Having overweight or obesity increases stroke risk.</p>
+                <p class="lead"><b>Diabetes</b> increases stroke risk because it can harm blood vessels in the brain.
+                </p>
+                <p class="lead"><b>Too much alcohol</b>. Drinking too much alcohol can raise blood pressure levels and
+                    increase the risk for stroke. It also increases levels of triglycerides, a form of fat in your blood
+                    that can harden your arteries.</p>
+                <p class="lead"><b>Not enough physical activity</b>. Not getting enough physical activity can lead to
+                    other health conditions that can raise the risk for stroke.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="b-example-divider"></div>
+
+    <div class="container col-xxl-8 px-4 py-5" id="Prevention">
+        <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
+            <div class="col-10 col-sm-8 col-lg-6">
+                <img src="assets/images/stroke6.jpg" class="d-block mx-lg-auto img-fluid" alt="Bootstrap Themes"
+                    width="700" height="500" loading="lazy">
+            </div>
+            <div class="col-lg-6">
+                <h1 class="display-5 fw-bold lh-1 mb-3">Stroke Prevention</h1>
+                <p class="lead">Know your ABCS of heart and brain health:</p>
+                <p class="lead"><b> Aspirin</b> may help reduce your risk for stroke, but you should check with your
+                    doctor before taking aspirin, because it can make some types of stroke worse. Before taking aspirin,
+                    talk with your doctor about whether it is right for you.</p>
+                <p class="lead"><b>Blood pressure</b>: Control your blood pressure with healthy lifestyle changes. If a
+                    blood
+                    pressure medicine is prescribed, take it as directed. </p>
+                <p class="lead"><b>Cholesterol</b>: Manage your blood cholesterol with healthy lifestyle changes. If a
+                    cholesterol medicine is prescribed, take it as directed.</p>
+                <p class="lead"><b>Smoking</b>: Don't start smoking.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="b-example-divider"></div>
+
+    <div class="container col-xxl-8 px-4 py-5">
+        <div class="row flex-lg-row align-items-center g-5 py-5">
+            <div class="col-10 col-sm-8 col-lg-6">
+                <img src="assets/images/stroke7.jpg" class="d-block mx-lg-auto img-fluid" alt="Bootstrap Themes"
+                    width="700" height="500" loading="lazy">
+            </div>
+            <div class="col-lg-6">
+                <h1 class="display-5 fw-bold lh-1 mb-3">Stroke Prevention</h1>
+                <p class="lead">Make lifestyle changes</p>
+                <p class="lead"><b>Eat healthy</b>: Choose healthy foods, including foods with less salt, or sodium, to
+                    lower your blood
+                    pressure and foods that are rich in fiber and whole grains to manage your cholesterol. Learn more
+                    about
+                    healthy eating.</p>
+                <p class="lead"><b>Get regular physical activity</b>: Regular physical activity helps you reach and
+                    maintain a healthy weight
+                    and keeps your heart and blood vessels healthier. Adults age 18 and older should get at least 150
+                    minutes (or 2 hours and 30 minutes) of physical activity each week and do muscle strengthening
+                    activities on two or more days each week.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="b-example-divider"></div>
+
+    <div class="px-4 my-5 text-center m">
+        <h1 class="display-4 fw-bold"></h1>
+        <div class="overflow-hidden">
+            <div class="container px-5">
+                <img src="assets/images/stroke8.jpg" class="img-fluid" alt="Example image" width="700" height="500"
+                    loading="lazy">
+            </div>
+        </div>
+    </div>
+
+    <div class="b-example-divider"></div>
+
+    <div class="container col-xxl-8 px-4 py-5">
+        <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
+            <div class="col-10 col-sm-8 col-lg-6">
+                <img src="assets/images/stroke101010.jpg" class="d-block mx-lg-auto img-fluid" alt="Bootstrap Themes"
+                    width="700" height="500" loading="lazy">
+            </div>
+            <div class="col-lg-6">
+                <h1 class="display-5 fw-bold lh-1 mb-3">Some Statistics</h1>
+                <p class="lead"><b>80M</b> are living with the impact of stroke.</p>
+                <p class="lead"><b>1 in 4</b> people over age <b>25</b> will experience stoke in their lifetime.</p>
+                <p class="lead"><b>90% </b>of all strokes are linked to <b>10</b> modifiable risk factors.</p>
+                <p class="lead"><b>5.5M</b> death due to stroke per year.</p>
+                <p class="lead"><b>116M</b> healthy years of life lost to stroke each year.</p>
+                <p class="lead">Almost <b>14M</b> new strokes each year.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="b-example-divider"></div>
+
+    <div class="container col-xxl-8 px-4 py-5">
+        <div class="row flex-lg-row align-items-center g-5 py-5">
+            <div class="col-10 col-sm-8 col-lg-6">
+                <img src="assets/images/stroke99.jpg" class="d-block mx-lg-auto img-fluid" alt="Bootstrap Themes"
+                    width="700" height="500" loading="lazy">
+            </div>
+            <div class="col-lg-6">
+                <h1 class="display-5 fw-bold lh-1 mb-3">Why predict Stroke?</h1>
+                <p class="lead">Up to 90% of strokes could be prevented by addressing a small number of risk factors,
+                    including
+                    hypertension, diet, smoking and exercise.Preventive action on stroke would also contribute to a
+                    massive
+                    scale reduction in stroke and would conribute to global goals to reduce cardiovascular disease,
+                    cancer,
+                    diabetes and other significant causes of death and suffering worldwide.</p>
+                <p class="lead">Our goal is to help you to understand your stroke risk and help you to identify the
+                    changes you can make to reduce your risk.</p>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="b-example-divider"></div>
+
+    <div class="container px-4 py-5 hide" id="custom-cards">
+        <div class="row row-cols-1 row-cols-lg-3 align-items-stretch g-4 py-5">
+            <div class="col col-4">
+                <div class="card card-cover h-100 overflow-hidden text-white bg-dark rounded-5 shadow-lg"
+                    style="background-image: url('assets/images/small1.jpg');background-size: cover; background-position: center;">
+                    <div class="d-flex flex-column h-100 p-5 text-white text-shadow-1">
+                        <h2 class="pt-5 mt-5 mb-5 display-6 lh-1 fw-bold">Accurate
+                        </h2>
+                    </div>
+                </div>
+            </div>
+            <div class="col col-4">
+                <div class="card card-cover h-100 overflow-hidden text-white bg-dark rounded-5 shadow-lg"
+                    style="background-image: url('assets/images/small2.png');background-size: cover;background-position: center;">
+                    <div class="d-flex flex-column h-100 p-5 text-white text-shadow-1">
+                        <h2 class="pt-5 mt-5 mb-5 display-6 lh-1 fw-bold">Fast
+                        </h2>
+                    </div>
+                </div>
+            </div>
+            <div class="col col-4">
+                <div class="card card-cover h-100 overflow-hidden text-white bg-dark rounded-5 shadow-lg"
+                    style="background-image: url('assets/images/small3.jpg');background-size: cover;background-position: center;">
+                    <div class="d-flex flex-column h-100 p-5 text-white text-shadow-1">
+                        <h2 class="pt-5 mt-5 mb-5 display-6 lh-1 fw-bold">Private
+                        </h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container pb-5">
+        <div class="row">
+            <div class="col col-sm-3">
+                <!-- <div class="tile-progress ">
+                    <div class="tile-header">
+                        <h3>Precision</h3>
+                        <span>A measure of Quality.</span>
+                    </div>
+                    <div class="tile-progressbar">
+                        <span data-fill="13%" style="width: 13%;"></span>
+                    </div>
+                    <div class="tile-footer">
+                        <h4>
+                            <span class="pct-counter">13</span>%
+                        </h4>
+                    </div>
+                </div> -->
+            </div>
+            <div class="col col-sm-3">
+                <div class="tile-progress">
+                    <div class="tile-header">
+                        <h3>Accuracy</h3>
+                        <span>&nbsp;</span>
+                    </div>
+                    <div class="tile-progressbar">
+                        <span data-fill="71%" style="width: 71%;"></span>
+                    </div>
+                    <div class="tile-footer">
+                        <h4>
+                            <span class="pct-counter">71</span>%
+                        </h4>
+                    </div>
+                </div>
+            </div>
+            <!-- <div class="col col-sm-4">
+                <div class="tile-progress ">
+                    <div class="tile-header">
+                        <h3>Precision</h3>
+                        <span>A measure of Quality.</span>
+                    </div>
+                    <div class="tile-progressbar">
+                        <span data-fill="13%" style="width: 13%;"></span>
+                    </div>
+                    <div class="tile-footer">
+                        <h4>
+                            <span class="pct-counter">13</span>%
+                        </h4>
+                    </div>
+                </div>
+            </div> -->
+            <div class="col col-sm-3">
+                <div class="tile-progress">
+                    <div class="tile-header">
+                        <h3>Recall</h3>
+                        <span>A measure of Quantity.</span>
+                    </div>
+                    <div class="tile-progressbar">
+                        <span data-fill="85%" style="width: 85%;"></span>
+                    </div>
+                    <div class="tile-footer">
+                        <h4>
+                            <span class="pct-counter">85</span>%
+                        </h4>
+                    </div>
+                </div>
+            </div>
+            <!-- <div class="col col-sm-3">
+                <div class="tile-progress tile-green">
+                    <div class="tile-header">
+                        <h3>F1 Score</h3>
+                        <span>&nbsp;</span>
+                    </div>
+                    <div class="tile-progressbar">
+                        <span data-fill="22%" style="width: 22%;"></span>
+                    </div>
+                    <div class="tile-footer">
+                        <h4>
+                            <span class="pct-counter">22</span>%
+                        </h4>
+                    </div>
+                </div>
+            </div> -->
+        </div>
+    </div>
+
+
+    <html-include src="footer.html"></html-include>
+
+    <script src="assets/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/dist/js/showfile.js"></script>
+
+</body>
+
+</html>

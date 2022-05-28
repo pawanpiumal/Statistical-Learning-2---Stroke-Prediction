@@ -1,1 +1,2 @@
-Prediction
+Made using the https://www.kaggle.com/datasets/fedesoriano/stroke-prediction-dataset/discussion/226324 dataset from kaggle.
+This website can predict the probability of having a stroke with high recall.

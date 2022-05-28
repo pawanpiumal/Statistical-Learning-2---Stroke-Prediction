@@ -1,0 +1,523 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stroke | Predict</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="assets/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="assets/JS/axios.min.js"></script>
+    <script src="assets/JS/sweetalert2@11.js"></script>
+    <script src="assets/JS/chart.min.js"></script>
+
+    <style>
+        #nav-tabContent {
+            border-bottom: 1px solid #dee2e6;
+            border-left: 1px solid #dee2e6;
+            border-right: 1px solid #dee2e6;
+            border-bottom-right-radius: 0.25rem;
+            border-bottom-left-radius: 0.25rem;
+        }
+
+        .btn-primary {
+            background-color: #660000 !important;
+            border-color: #660000 !important;
+        }
+    </style>
+
+<body>
+
+    <html-include src="header.html"></html-include>
+
+    <div style='box-shadow: inset 0 0.5em 1.5em rgb(0 0 0 / 10%), inset 0 0.125em 0.5em rgb(0 0 0 / 15%); height:3rem;'>
+    </div>
+
+    <div>
+        <div class="bd-example container mt-5 mb-5">
+            <nav>
+                <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                    <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home"
+                        type="button" role="tab" aria-controls="nav-home" aria-selected="true">Stroke
+                        Prediction</button>
+                    <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile"
+                        type="button" role="tab" aria-controls="nav-profile" aria-selected="false">Range
+                        Prediction</button>
+                    <button class="nav-link" id="nav-contact-tab" data-bs-toggle="tab" data-bs-target="#nav-contact"
+                        type="button" role="tab" aria-controls="nav-contact" aria-selected="false">Results</button>
+                </div>
+            </nav>
+            <div class="tab-content container p-3" id="nav-tabContent" style="border-bottom: 1px solid #dee2e6;">
+                <div class="tab-pane fade active show" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+                    <form class="needs-validation" id="predict-form">
+                        <div class="row g-3">
+                            <!-- <div class="col-12">
+                                <label for="gender" class="form-label">Gender</label>
+                                <select class="form-select" id="gender" required="">
+                                    <option value="">Choose...</option>
+                                    <option value="Male">Male</option>
+                                    <option value="Female">Female</option>
+                                </select>
+                                <div class="invalid-feedback">
+                                    Valid gender is required.
+                                </div>
+                            </div> -->
+
+                            <div class="col-12">
+                                <label for="age" class="form-label">Age (in years)</label>
+                                <input class="form-control" type="number" id="age" required />
+                                <div class="invalid-feedback">
+                                    Valid age is required.
+                                </div>
+                            </div>
+
+                            <div class="form-check">
+
+                                <label class="form-check-label" for="hypertension">Do you have Hypertension (High blood
+                                    preasure)
+                                    :</label>
+                                <input type="checkbox" class="form-check-input" id="hypertension"
+                                    style="float: unset; margin-left: 0.5rem;margin-top: 0.4rem;">
+
+                            </div>
+
+                            <div class="form-check">
+                                <label class="form-check-label" for="heart_disease">Do you have any heart disease
+                                    :</label>
+                                <input type="checkbox" class="form-check-input" id="heart_disease"
+                                    style="float: unset; margin-left: 0.5rem;margin-top: 0.4rem;">
+                            </div>
+
+                            <!-- <div class="form-check">
+                                <label class="form-check-label" for="ever_married">Have you ever been married ?
+                                    :</label>
+                                <input type="checkbox" class="form-check-input" id="ever_married"
+                                    style="float: unset; margin-left: 0.5rem;margin-top: 0.4rem;">
+                            </div> -->
+
+                            <!-- <div class="col-12">
+                                <label for="work_type" class="form-label">Work type</label>
+                                <select class="form-select" id="work_type" required="">
+                                    <option value="">Choose...</option>
+                                    <option value="children">Children</option>
+                                    <option value="Govt_job">Government Job</option>
+                                    <option value="Private">Private</option>
+                                    <option value="Self-employed">Self-employed</option>
+                                    <option value="Never_worked">Never worked</option>
+                                </select>
+                                <div class="invalid-feedback">
+                                    Valid Work type is required.
+                                </div>
+                            </div> -->
+
+                            <div class="col-12">
+                                <label for="residence_type" class="form-label">Residence type</label>
+                                <select class="form-select" id="residence_type" required="">
+                                    <option value="">Choose...</option>
+                                    <option value="Rural">Rural</option>
+                                    <option value="Urban">Urban</option>
+                                </select>
+                                <div class="invalid-feedback">
+                                    Valid Residence type is required.
+                                </div>
+                            </div>
+
+                            <div class="col-12">
+                                <label for="avg_glucose_level" class="form-label">Average Glucose Level</label>
+                                <input class="form-control" type="number" id="avg_glucose_level" required  placeholder=" Less than 140 mg/dL for a Normal Person" />
+                                <div class="invalid-feedback">
+                                    Valid Average Glucose Level is required.
+                                </div>
+                            </div>
+
+                            <div class="col-12">
+                                <label for="bmi" class="form-label">BMI</label>
+                                <input class="form-control" type="number" id="bmi" required />
+                                <div class="invalid-feedback">
+                                    Valid BMI is required.
+                                </div>
+                            </div>
+
+                            <div class="col-12">
+                                <label for="smoking_status" class="form-label">Smoking Status</label>
+                                <select class="form-select" id="smoking_status" required="">
+                                    <option value="">Choose...</option>
+                                    <option value="formerly smoked">Formerly Smoked</option>
+                                    <option value="never smoked">Never Smoked</option>
+                                    <option value="smokes">Smokes</option>
+                                    <option value="Unknown">Unknown</option>
+                                </select>
+                                <div class="invalid-feedback">
+                                    Valid Smoking Status is required.
+                                </div>
+                            </div>
+                        </div>
+
+                        <hr class="my-4">
+
+                        <button class="w-100 btn btn-primary btn-lg" type="submit">Predict</button>
+                    </form>
+                </div>
+                <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+                    <!-- <h4 class="mb-3"></h4> -->
+                    <div class="row g-3">
+                        <div class="col-12">
+                            <label for="range" class="form-label">Range Variable</label>
+                            <select class="form-select" id="range" required="">
+                                <option value="">Choose...</option>
+                                <option value="age">Age (For next 10 years)</option>
+                                <option value="hypertension">Hypertension</option>
+                                <option value="heart_disease">Heart Disease</option>
+                                <!-- <option value="ever_married">Marriage Status</option> -->
+                                <!-- <option value="work_type">Work Type</option> -->
+                                <option value="residence_type">Residence Type</option>
+                                <option value="bmi">BMI</option>
+                                <option value="smoking_status">Smoking Status</option>
+                            </select>
+                            <div class="invalid-feedback">
+                                Valid range variable is required.
+                            </div>
+                        </div>
+                        <form class="needs-validation" id="range-form">
+                            <div class="row g-3">
+                                <!-- <div class="col-12" hidden>
+                                    <label for="gender" class="form-label">Gender</label>
+                                    <select class="form-select" id="gender" required="">
+                                        <option value="">Choose...</option>
+                                        <option value="Male">Male</option>
+                                        <option value="Female">Female</option>
+                                    </select>
+                                    <div class="invalid-feedback">
+                                        Valid gender is required.
+                                    </div>
+                                </div> -->
+
+                                <div class="col-12" hidden>
+                                    <label for="age" class="form-label">Age (in years)</label>
+                                    <input class="form-control" type="number" id="age" required />
+                                    <div class="invalid-feedback">
+                                        Valid age is required.
+                                    </div>
+                                </div>
+
+                                <div class="form-check" hidden>
+
+                                    <label class="form-check-label" for="hypertension">Do you have Hypertension (High
+                                        blood
+                                        preasure)
+                                        :</label>
+                                    <input type="checkbox" class="form-check-input" id="hypertension"
+                                        style="float: unset; margin-left: 0.5rem;margin-top: 0.4rem;">
+
+                                </div>
+
+                                <div class="form-check" hidden>
+                                    <label class="form-check-label" for="heart_disease">Do you have any heart disease
+                                        :</label>
+                                    <input type="checkbox" class="form-check-input" id="heart_disease"
+                                        style="float: unset; margin-left: 0.5rem;margin-top: 0.4rem;">
+                                </div>
+
+                                <!-- <div class="form-check" hidden>
+                                    <label class="form-check-label" for="ever_married">Have you ever been married ?
+                                        :</label>
+                                    <input type="checkbox" class="form-check-input" id="ever_married"
+                                        style="float: unset; margin-left: 0.5rem;margin-top: 0.4rem;">
+                                </div> -->
+
+                                <!-- <div class="col-12" hidden>
+                                    <label for="work_type" class="form-label">Work type</label>
+                                    <select class="form-select" id="work_type" required="">
+                                        <option value="">Choose...</option>
+                                        <option value="children">Children</option>
+                                        <option value="Govt_job">Government Job</option>
+                                        <option value="Private">Private</option>
+                                        <option value="Self-employed">Self-employed</option>
+                                        <option value="Never_worked">Never worked</option>
+                                    </select>
+                                    <div class="invalid-feedback">
+                                        Valid Work type is required.
+                                    </div>
+                                </div> -->
+
+                                <div class="col-12" hidden>
+                                    <label for="residence_type" class="form-label">Residence type</label>
+                                    <select class="form-select" id="residence_type" for="residence_type">
+                                        <option value="">Choose...</option>
+                                        <option value="Rural">Rural</option>
+                                        <option value="Urban">Urban</option>
+                                    </select>
+                                    <div class="invalid-feedback">
+                                        Valid Residence type is required.
+                                    </div>
+                                </div>
+
+                                <div class="col-12" hidden>
+                                    <label for="avg_glucose_level" class="form-label">Average Glucose Level</label>
+                                    <input class="form-control" type="number" id="avg_glucose_level"
+                                        for="avg_glucose_level" placeholder=" Less than 140 mg/dL for a Normal Person" />
+                                    <div class="invalid-feedback">
+                                        Valid Average Glucose Level is required.
+                                    </div>
+                                </div>
+
+                                <div class="col-12" hidden>
+                                    <label for="bmi" class="form-label">BMI</label>
+                                    <input class="form-control" type="number" id="bmi" for="bmi" />
+                                    <div class="invalid-feedback">
+                                        Valid BMI is required.
+                                    </div>
+                                </div>
+
+                                <div class="col-12" hidden>
+                                    <label for="smoking_status" class="form-label">Smoking Status</label>
+                                    <select class="form-select" id="smoking_status" for="smoking_status">
+                                        <option value="">Choose...</option>
+                                        <option value="formerly smoked">Formerly Smoked</option>
+                                        <option value="never smoked">Never Smoked</option>
+                                        <option value="smokes">Smokes</option>
+                                        <option value="Unknown">Unknown</option>
+                                    </select>
+                                    <div class="invalid-feedback">
+                                        Valid Smoking Status is required.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <hr class="my-4">
+
+                            <button class="w-100 btn btn-primary btn-lg" type="submit">Predict</button>
+                        </form>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
+                    <div id="results-image" class="row g-3 mb-4" style="display: grid; justify-items: center;">
+                        <img src="assets/images/No Results1.jpg" style="max-width: 50%; height:auto;" />
+                    </div>
+                    <h4 class="mb-3" id="results-title"></h4>
+                    <div class="mt-5">
+                        <div class="row g-3" id="results-row">
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <html-include src="footer.html"></html-include>
+
+    <script src="assets/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/dist/js/showfile.js"></script>
+    <script>
+        window.onload = function () {
+            document.querySelector('#range-form button').disabled = true;
+        }
+
+        const form = document.getElementById('predict-form');
+        form.onsubmit = function (e) {
+            e.preventDefault();
+            Swal.fire({
+                title: "Predicting...",
+                imageUrl: "assets/images/loading.gif",
+                showConfirmButton: false,
+                allowOutsideClick: false
+            });
+            axios.post('http://localhost:8000/api/predict', {
+                // gender: form.elements.gender.value,
+                age: form.elements.age.value,
+                hypertension: form.elements.hypertension.checked ? "1" : "0",
+                heart_disease: form.elements.heart_disease.checked ? "1" : "0",
+                // ever_married: form.elements.ever_married.checked ? "Yes" : "No",
+                // work_type : form.elements.work_type.value,
+                residence_type: form.elements.residence_type.value,
+                avg_glucose_level: form.elements.avg_glucose_level.value,
+                bmi: form.elements.bmi.value,
+                smoking_status: form.elements.smoking_status.value
+            }).then(res => {
+                console.log(res)
+                Swal.fire({
+                    title: res.data.Outcome[0],
+                    text: "Probability : " + (res.data.Probability[0] * 100).toFixed(2) + "%",
+                    // icon: res.data.Outcome[0]== "Delayed" ? "warning": "success"
+                    imageUrl: res.data.Stroke[0][0] == true ? "assets/images/StrokeTrue2.jpg" : "assets/images/StrokeFalse.jpg"
+                })
+            }).catch(err => {
+                console.error(err);
+                Swal.fire({
+                    title: 'Error Occured!',
+                    text: err,
+                    icon: 'error',
+                    confirmButtonText: 'Ok'
+                })
+            })
+        }
+
+        const rangeSelect = document.getElementById('range');
+        const rangeForm = document.getElementById('range-form');
+        rangeSelect.oninput = function (r) {
+            // gender = rangeForm.elements.gender
+            age = rangeForm.elements.age
+            hypertension = rangeForm.elements.hypertension
+            heart_disease = rangeForm.elements.heart_disease
+            // ever_married = rangeForm.elements.ever_married
+            // work_type = rangeForm.elements.work_type
+            residence_type = rangeForm.elements.residence_type
+            avg_glucose_level = rangeForm.elements.avg_glucose_level
+            bmi = rangeForm.elements.bmi
+            smoking_status = rangeForm.elements.smoking_status
+
+            // list = ["gender", age, hypertension, heart_disease, "ever_married", "work_type", residence_type, avg_glucose_level, bmi, smoking_status];
+            list = [age, hypertension, heart_disease, residence_type, avg_glucose_level, bmi, smoking_status];
+            appear = function (num) {
+                for (var i = 0; i < list.length; i++) {
+                    list[i].parentNode.hidden = false;
+                    list[i].required = true
+                    if (i == num) {
+                        list[i].parentNode.hidden = true;
+                        list[i].required = false;
+                    }
+                }
+                list[1].required = false;
+                list[2].required = false;
+            }
+            if (rangeSelect.value == 'age') {
+                for (var i = 0; i < list.length; i++) {
+                    list[i].parentNode.hidden = false;
+                    list[i].parentNode.required = true;
+                }
+            }
+            if (rangeSelect.value == 'hypertension') {
+                appear(1);
+                hypertension.required = false;
+            }
+            if (rangeSelect.value == 'heart_disease') {
+                appear(2);
+                hypertension.required = false;
+            }
+            // if (rangeSelect.value == 'ever_married') {
+            //     appear(4);
+            //     ever_married.required = false;
+            // }
+            // if (rangeSelect.value == 'work_type') {
+            //     appear(5);
+            //     ever_married.required = false;
+            // }
+            if (rangeSelect.value == 'residence_type') {
+                appear(3);
+                residence_type.required = false;
+            }
+            if (rangeSelect.value == 'avg_glucose_level') {
+                appear(4);
+                avg_glucose_level.required = false;
+            }
+            if (rangeSelect.value == 'bmi') {
+                appear(5);
+                bmi.required = false;
+            }
+            if (rangeSelect.value == 'smoking_status') {
+                appear(6);
+                smoking_status.required = false;
+            }
+            if (rangeSelect.value == '') {
+                for (var i = 0; i < list.length; i++) {
+                    list[i].parentNode.hidden = true;
+                }
+                document.querySelector('#range-form button').disabled = true;
+            } else {
+                document.querySelector('#range-form button').disabled = false;
+            }
+        }
+
+        rangeForm.onsubmit = function (e) {
+            e.preventDefault();
+            Swal.fire({
+                title: "Predicting...",
+                imageUrl: "assets/images/loading.gif",
+                showConfirmButton: false,
+                allowOutsideClick: false
+            });
+            axios.post('http://localhost:8000/api/predictRange', {
+                range: rangeSelect.value,
+                // gender: rangeForm.elements.gender.value,
+                age: rangeForm.elements.age.value,
+                hypertension: rangeForm.elements.hypertension.checked ? "1" : "0",
+                heart_disease: rangeForm.elements.heart_disease.checked ? "1" : "0",
+                // ever_married: rangeForm.elements.ever_married.checked ? "1" : "0",
+                residence_type: rangeForm.elements.residence_type.value,
+                avg_glucose_level: rangeForm.elements.avg_glucose_level.value,
+                bmi: rangeForm.elements.bmi.value,
+                smoking_status: rangeForm.elements.smoking_status.value
+            }).then(res => {
+                console.log(res.data)
+                document.getElementById('nav-contact-tab').click()
+                Swal.close()
+                document.getElementById('results-image').hidden = true;
+                const row = document.getElementById('results-row');
+                row.innerHTML = "";
+
+                document.getElementById("results-title").innerHTML = rangeSelect.options[rangeSelect.selectedIndex].text;
+
+                for (var i = 0; i < res.data.probability.length; i++) {
+                    var newRow = document.createElement('div')
+                    newRow.setAttribute('class', 'row mb-3');
+
+                    var newCol = document.createElement('div')
+                    newCol.setAttribute('class', 'col col-1');
+                    var newCol4 = document.createElement('div')
+                    newCol4.setAttribute('class', 'col col-1');
+
+                    var newCol1 = document.createElement('div')
+                    newCol1.setAttribute('class', 'col col-2');
+                    var newCol2 = document.createElement('div')
+                    newCol2.setAttribute('class', 'col col-6');
+                    var newCol3 = document.createElement('div')
+                    newCol3.setAttribute('class', 'col col-2');
+                    newCol3.setAttribute('style', 'display: grid; justify-items:center;');
+
+                    newRow.appendChild(newCol);
+                    newRow.appendChild(newCol1);
+                    newRow.appendChild(newCol2);
+                    newRow.appendChild(newCol3);
+                    newRow.appendChild(newCol4);
+
+                    nam = document.createElement('p');
+                    nam.innerHTML = res.data.variable[i];
+                    newCol1.appendChild(nam);
+
+                    color = (res.data.stroke[i]) ? "bg-danger" : "bg-success"
+                    newCol2.innerHTML = "<div class=\"progress mb-3\"\>" +
+                        "\<div class=\"progress-bar " + color + " w-" + (res.data.probability[i] * 100).toFixed(0) + "\" " +
+                        " style=\"width: " + (res.data.probability[i] * 100).toFixed(2) + "%" + "\"" +
+                        "role=\"progressbar\" aria-valuenow=\"" +
+                        (res.data.probability[i] * 100).toFixed(2) +
+                        "\" aria-valuemin=\"0\" aria-valuemax=\"100\"\>" +
+                        (res.data.probability[i] * 100).toFixed(2) + "%" +
+                        "<\/div\>" +
+                        "</div>";
+                    nam2 = document.createElement('p');
+                    nam2.innerHTML = (res.data.probability[i] * 100).toFixed(2) + "%";
+                    newCol3.appendChild(nam2);
+
+                    row.appendChild(newRow);
+                }
+            }).catch(err => {
+                console.error(err);
+                Swal.fire({
+                    title: 'Error Occured!',
+                    text: err,
+                    icon: 'error',
+                    confirmButtonText: 'Ok'
+                })
+            })
+        }
+
+    </script>
+
+
+</body>
+
+</html>
